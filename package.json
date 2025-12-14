@@ -9,11 +9,18 @@
   "scripts": {
     "docs:dev": "yarn workspace docs dev",
     "docs:build": "yarn workspace docs build",
-    "pkg:build": "yarn workspaces foreach -pt run build"
+    "build": "yarn workspaces foreach -pt run build"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.8",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@types/signale": "^1.4.7",
+    "ora": "^9.0.0",
+    "signale": "^1.4.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "rollup": "^4.53.3"
   }
 }
