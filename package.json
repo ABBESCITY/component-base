@@ -1,4 +1,19 @@
 {
-  "name": "component-base",
-  "packageManager": "yarn@4.10.3"
+  "name": "abbes-base",
+  "packageManager": "yarn@4.10.3",
+  "version": "0.0.0",
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
+  "scripts": {
+    "docs:dev": "yarn workspace docs dev",
+    "docs:build": "yarn workspace docs build",
+    "pkg:build": "yarn workspaces foreach -pt run build"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
 }
