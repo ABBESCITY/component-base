@@ -1,5 +1,5 @@
 {
-  "name": "@abbes-base/core",
+  "name": "@abbes-base-components/input",
   "version": "0.0.0",
   "private": true,
   "module": "esm/index.js",
@@ -10,7 +10,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsx ../../scripts/build.ts --package core"
+    "build": "tsx ../../scripts/build.ts --package components"
   },
-  "peerDependcies": {}
+  "peerDependcies": {
+    "@abbes-base/core": "workspace:^"
+  }
 }

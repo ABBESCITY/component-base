@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "esm",
+    "src/**/*.spec.test.{ts, tsx}",
+    "src/**/*.test.{ts, tsx}"
+  ],
+  "compilerOptions": {
+    "rootDir": "./src"
+  }
+}
