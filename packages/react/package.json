@@ -1,14 +1,20 @@
 {
-  "name": "@abbes-base-components/input",
+  "name": "@abbes-base/cascader",
   "version": "0.0.0",
   "private": true,
-  "module": "esm/index.js",
-  "types": "lib/index.d.ts",
+  "source": "./src/index.tsx",
   "files": [
     "esm",
     "lib",
     "README.md"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
     "build": "tsx ../../scripts/build.ts --package components"
   },

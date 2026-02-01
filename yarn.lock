@@ -5,12 +5,6 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@abbes-base/components@workspace:packages/components":
-  version: 0.0.0-use.local
-  resolution: "@abbes-base/components@workspace:packages/components"
-  languageName: unknown
-  linkType: soft
-
 "@abbes-base/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@abbes-base/core@workspace:packages/core"
