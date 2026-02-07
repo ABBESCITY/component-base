@@ -8,13 +8,14 @@ import esbuild from "rollup-plugin-esbuild";
 import nodeResolve from "@rollup/plugin-node-resolve";
 
 import { createLogger } from "../utils/logger";
+import { PackageInfo } from "../utils/package";
 
-const logger = createLogger("build-compile");
+const logger = createLogger("compile");
 
 interface CompileOptions {
   watch?: boolean;
   minify?: boolean;
-  package?: string;
+  package?: PackageInfo;
 }
 
 function createRollupExternal() {

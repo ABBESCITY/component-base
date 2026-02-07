@@ -2,6 +2,12 @@ import yargs from "yargs";
 import { compile } from "./compile";
 import { generateDeclarationFiles } from "./genDeclarationFile";
 import { generatePackageJson } from "./genPackageJson";
+import {
+  getPackageInfoList,
+  getPackageInfo,
+  PackageInfo,
+} from "../utils/package";
+import { createLogger } from "../utils/logger";
 
 interface BuildOptions {
   watch?: boolean;
@@ -10,17 +16,32 @@ interface BuildOptions {
   package?: string;
 }
 
+const logger = createLogger("build");
+
 async function buildPkg(argv: BuildOptions) {
   if (argv.all && argv.package) {
-    console.error("Error: Cannot use --all and --package options together");
+    logger.error("Error: Cannot use --all and --package options together");
+    process.exit(1);
+  }
+
+  const packageList = argv.all
+    ? getPackageInfoList()
+    : argv.package
+    ? [getPackageInfo(argv.package)]
+    : [];
+
+  if (packageList.length === 0) {
+    logger.error("Error: No packages to build");
     process.exit(1);
   }
 
   // Compile Source Code
-  await compile({
-    watch: argv.watch,
-    minify: argv.minify,
-    package: argv.all ? undefined : argv.package,
+  packageList.forEach(async (packageInfo: PackageInfo) => {
+    await compile({
+      watch: argv.watch,
+      minify: argv.minify,
+      package: packageInfo,
+    });
   });
 
   // Generate Declaration File

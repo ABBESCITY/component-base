@@ -5,9 +5,15 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@abbes-base/core@workspace:packages/core":
+"@abbes-base/components@workspace:packages/react":
   version: 0.0.0-use.local
-  resolution: "@abbes-base/core@workspace:packages/core"
+  resolution: "@abbes-base/components@workspace:packages/react"
+  languageName: unknown
+  linkType: soft
+
+"@abbes-base/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@abbes-base/utils@workspace:packages/utils"
   languageName: unknown
   linkType: soft
 

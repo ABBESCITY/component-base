@@ -1,5 +1,5 @@
 {
-  "name": "@abbes-component/core",
+  "name": "@abbes-base/utils",
   "version": "0.0.0",
   "private": true,
   "module": "esm/index.js",
