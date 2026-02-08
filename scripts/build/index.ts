@@ -35,20 +35,22 @@ async function buildPkg(argv: BuildOptions) {
     process.exit(1);
   }
 
-  // Compile Source Code
-  packageList.forEach(async (packageInfo: PackageInfo) => {
+  for (const packageInfo of packageList) {
+    // Compile Source Code
     await compile({
       watch: argv.watch,
       minify: argv.minify,
-      package: packageInfo,
+      packageInfo: packageInfo,
     });
-  });
 
-  // Generate Declaration File
-  await generateDeclarationFiles();
+    // Generate Declaration File
+    await generateDeclarationFiles({
+      tsconfigPath: `${packageInfo.path}/tsconfig.build.json`,
+    });
 
-  // Generate Package'json
-  await generatePackageJson();
+    // Generate Package'json
+    // await generatePackageJson();
+  }
 }
 
 /**
@@ -62,7 +64,7 @@ async function bootstrap() {
   await yargs(process.argv.slice(2))
     .usage("Usage: $0 <command> [options]")
     .command(
-      "build",
+      ["$0", "build"],
       "Build packages",
       {
         all: {

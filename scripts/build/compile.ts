@@ -10,13 +10,13 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import { createLogger } from "../utils/logger";
 import { PackageInfo } from "../utils/package";
 
-const logger = createLogger("compile");
-
 interface CompileOptions {
   watch?: boolean;
   minify?: boolean;
-  package?: PackageInfo;
+  packageInfo?: PackageInfo;
 }
+
+const logger = createLogger("compile");
 
 function createRollupExternal() {
   const baseExternals = ["react/jsx-runtime", "react-is"];
@@ -32,18 +32,24 @@ function createRollupExternal() {
   }
 }
 
-function createRollupOption(options: CompileOptions = {}): RollupOptions {
+function createRollupOption(options: CompileOptions): RollupOptions {
+
+  const { packageInfo } = options
+
+  const inputEntry = `${packageInfo?.path}/src/index.ts`
+
+
   return {
-    input: "src/index.ts",
+    input: inputEntry,
     output: [
       {
-        dir: "dist/esm",
+        dir: `${packageInfo?.path}/dist/esm`,
         format: "esm",
         preserveModules: true,
         preserveModulesRoot: "src",
       },
       {
-        dir: "dist/cjs",
+        dir: `${packageInfo?.path}/dist/cjs`,
         format: "cjs",
         preserveModules: true,
         preserveModulesRoot: "src",
@@ -64,6 +70,8 @@ export async function compile(options: CompileOptions = {}) {
   try {
     const rollupConfig = createRollupOption(options);
 
+    logger.info(`========   ${options.packageInfo?.name}   ========`);
+
     if (options.watch) {
       const { watch } = await import("rollup");
       const watcher = watch([rollupConfig as RollupWatchOptions]);
@@ -82,6 +90,7 @@ export async function compile(options: CompileOptions = {}) {
       return;
     }
 
+    logger.info("Build started...");
     const bundle = await rollup(rollupConfig);
     for (const outputOptions of rollupConfig.output as OutputOptions[]) {
       await bundle.write(outputOptions);

@@ -10,8 +10,9 @@
     "docs:dev": "yarn workspace docs dev",
     "docs:build": "yarn workspace docs build",
     "docs:release": "yarn workspace docs release",
-    "package:build": "tsx ./scripts/build.ts",
-    "package:release": "tsx ./scripts/release.ts",
+    "build": "tsx ./scripts/build ",
+    "build:clear": "tsx ./scripts/other/buildClear",
+    "release": "tsx ./scripts/release",
     "test": "tsx ./scripts/utils/test-run.ts"
   },
   "devDependencies": {
