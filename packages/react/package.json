@@ -1,0 +1,24 @@
+{
+  "name": "@abbes-base/components",
+  "version": "0.0.0",
+  "private": true,
+  "source": "./src/index.tsx",
+  "files": [
+    "esm",
+    "lib",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsx ../../scripts/build.ts --package components"
+  },
+  "peerDependcies": {
+    "@abbes-base/core": "workspace:^"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "@abbes-base/core",
+  "name": "@abbes-base/utils",
   "version": "0.0.0",
   "private": true,
   "module": "esm/index.js",
@@ -8,5 +8,9 @@
     "esm",
     "lib",
     "README.md"
-  ]
+  ],
+  "scripts": {
+    "build": "tsx ../../scripts/build.ts --package core"
+  },
+  "peerDependcies": {}
 }
